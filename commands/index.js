@@ -1,9 +1,10 @@
 // require all commands
 const hello = require('./hello');
+const uptime = require('./uptime');
 
 let descriptions = '';
 // Setting up descriptions and usage details of each command.
-const commands = [hello].reduce((all, command) => {
+const commands = [hello, uptime].reduce((all, command) => {
 	command.triggers.forEach((trigger) => (all[trigger] = command.handler));
 	descriptions += `**${command.name}** - ${command.description}
 Usage: ${command.triggers.map((trigger) => `!${trigger}`).join(' | ')} ${
