@@ -6,6 +6,7 @@ module.exports = {
 	name: 'roll',
 	triggers: ['roll'],
 	description: 'Roll a dice',
+	example: '!roll d20',
 	handler: (message) => {
 		const args = message.content.match(/d{1}\d+/g);
 		const num = Number(args[0].substr(1));
