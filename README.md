@@ -4,6 +4,6 @@ A Discord bot for a Discord server I own.
 
 ## Commands
 
-### !ping
+### !hello | !hi
 
-This will return the message "Pong".
+The bot will greet the user
