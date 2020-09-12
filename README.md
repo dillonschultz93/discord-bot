@@ -1,6 +1,6 @@
 # discord-bot
 
-A discord bot for a discord server I own.
+A Discord bot for a Discord server I own.
 
 ## Commands
 
