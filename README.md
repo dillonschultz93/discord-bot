@@ -1,6 +1,6 @@
 # discord-bot
 
-A bot for the Yggdrasil II: Electric Boogaloo server.
+A discord bot for a discord server I own.
 
 ## Commands
 
