@@ -3,7 +3,7 @@ module.exports = {
 	triggers: ['hello', 'hi'],
 	description: 'Greet the bot',
 	handler: (message) => {
-		return message.channel.send({
+		return message.channel.send(`${message.author}`, {
 			files: [{
 				attachment: __dirname + '/assets/hello-there.gif',
 				name: 'hello-there.gif',
