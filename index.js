@@ -9,7 +9,6 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-// Setting up a !ping command
 client.on('message', (message) => {
 	if (message.content[0] === '!') {
 		const command = message.content.split(' ')[0].substr(1);

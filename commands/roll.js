@@ -19,7 +19,11 @@ module.exports = {
 			}
 		}
 		else {
+<<<<<<< HEAD
 			return message.channel.send('Please specify a dice. Valid dice are d2 - d20');
+=======
+			return message.channel.send('Please add a dice value (e.x. !roll d20)');
+>>>>>>> main
 		}
 	},
 };
