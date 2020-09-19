@@ -1,21 +1,26 @@
+const { MessageEmbed } = require('discord.js');
+
 // require all commands
 const hello = require('./hello');
 const uptime = require('./uptime');
 const roll = require('./roll');
 
-let descriptions = '';
-// Setting up descriptions and usage details of each command.
-const commands = [hello, uptime, roll].reduce((all, command) => {
+const rawCommands = [hello, uptime, roll];
+// Setting up the handlers for each command.
+const commands = [...rawCommands].reduce((all, command) => {
 	command.triggers.forEach((trigger) => (all[trigger] = command.handler));
-	descriptions += `**${command.name}** - ${command.description}
-Usage: ${command.triggers.map((trigger) => `!${trigger}`).join(' | ')} ${
-	command.example || ''
-}
-
-	`;
 
 	return all;
 }, {});
+
+// Setting up the descriptions for all of the commands.
+const descriptions = new MessageEmbed()
+	.setTitle('📄 List of Valid Commands')
+	.setDescription('Here is a list of valid commands that Mímameiðr Bot will take');
+
+rawCommands.forEach(command => {
+	descriptions.addField(`!${command.triggers.join(' | !')}`, `${command.description}`, false);
+});
 
 const showAllCommands = (message) => {
 	return message.channel.send(descriptions);
