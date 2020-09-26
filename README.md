@@ -15,3 +15,7 @@ The bot will output how long it has been booted up for
 ### !roll [d(n)]
 
 The bot will output a random number based on the dice level. Valid dice levels are 2-20.
+
+### !reset | !restart | !reboot
+
+Restarts the bot. This is command is reserved for the server admin.
