@@ -24,6 +24,7 @@
     "moment": "^2.27.0"
   },
   "devDependencies": {
-    "eslint": "^7.8.1"
+    "eslint": "^7.8.1",
+    "nodemon": "^2.0.4"
   }
 }
