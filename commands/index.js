@@ -4,8 +4,9 @@ const { MessageEmbed } = require('discord.js');
 const hello = require('./hello');
 const uptime = require('./uptime');
 const roll = require('./roll');
+const reset = require('./reset');
 
-const rawCommands = [hello, uptime, roll];
+const rawCommands = [hello, uptime, roll, reset];
 // Setting up the handlers for each command.
 const commands = [...rawCommands].reduce((all, command) => {
 	command.triggers.forEach((trigger) => (all[trigger] = command.handler));
