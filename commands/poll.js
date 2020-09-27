@@ -9,13 +9,14 @@ module.exports = {
 	usage:
 		'To ask a yes/no poll wrap your question around double quotes.\nE.g. !poll "Yes or No?"\nTo ask a multiple choice question wrap your question around double quotes and the subsequent choices in double quotes as well.\nE.g. !poll "What toppings do you want on the pizza?" "Mushrooms" "Black Olives" "Bacon" "Peppers" "Onions"\n Note: Multiple choice polls have a limit of 5 options.',
 	handler: (message) => {
-		let args = message.content.match(/"(.+?)"/g);
+		let args =
+			message.content.match(/"(.+?)"/g) || message.content.match(/“(.+?)”/g);
 
 		const executePoll = () => {
 			if (args) {
 				// Yes/No question
 				if (args.length === 1) {
-					const question = args[0].replace(/"/g, '');
+					const question = args[0].replace(/("|(“|”))/g, '');
 					const filter = (reaction) => {
 						return ['👍', '👎', '🤷'].includes(reaction.emoji.name);
 					};
@@ -63,7 +64,7 @@ module.exports = {
 				}
 				// Multiple choice question
 				else {
-					args = args.map((arg) => arg.replace(/"/g, ''));
+					args = args.map((arg) => arg.replace(/("|(“|”))/g, ''));
 					const question = args[0];
 					const pollOptions = args.slice(1);
 					const numberOfOptions = args.length - 1;
