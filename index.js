@@ -1,12 +1,11 @@
 require('dotenv').config();
 const Discord = require('discord.js');
-
 const client = new Discord.Client();
-
 const commands = require('./commands/index');
+const moment = require('moment');
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log(`${moment().format('LLL')}: Ready!`);
 });
 
 client.on('message', (message) => {

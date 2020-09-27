@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { MessageEmbed } = require('discord.js');
 const optionChars = require('../util/regionalIndicatorCharacters');
+const moment = require('moment');
 
 module.exports = {
 	name: 'poll',
@@ -20,6 +21,9 @@ module.exports = {
 					const filter = (reaction) => {
 						return ['👍', '👎', '🤷'].includes(reaction.emoji.name);
 					};
+
+					// Log the question to the console
+					console.log(`${moment().format('LLL')}: ${message.author} created a yes/no poll: ${question}`);
 
 					return message.channel
 						.send(`${question}`)
@@ -46,7 +50,7 @@ module.exports = {
 									};
 
 									// Logging results to the server
-									console.log(`${question}: `, channelReactions);
+									console.log(`${moment().format('LLL')}: Results from the question "${question}": `, channelReactions);
 
 									const embed = new MessageEmbed()
 										.setTitle('Here are the results of the poll')
@@ -88,6 +92,9 @@ module.exports = {
 						);
 					}
 					else {
+						// Log the question to the console
+						console.log(`${moment().format('LLL')}: ${message.author} created a multiple choice poll: ${question}`);
+
 						return message.channel
 							.send(`${question}\n\n${generateOptions(pollOptions)}`)
 							.then(async (msg) => {
@@ -110,7 +117,7 @@ module.exports = {
 										});
 
 										// Logging results to the server
-										console.log(`${question}: `, channelReactions);
+										console.log(`${moment().format('LLL')}: Results from the question "${question}": `, channelReactions);
 
 										const embed = new MessageEmbed()
 											.setTitle('Here are the results of the poll')

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const moment = require('moment');
 
 module.exports = {
 	name: 'reset',
@@ -15,6 +16,7 @@ module.exports = {
 				await new Promise((resolve) =>
 					setTimeout(() => {
 						message.channel.send('I\'m back!');
+						console.log(`${moment().format('LLL')}: Reboot complete`);
 						resolve();
 					}, 200),
 				);
@@ -23,6 +25,7 @@ module.exports = {
 			message.channel
 				.send('Rebooting...')
 				// Restarting the server
+				.then(() => console.log(`${moment().format('LLL')}: Rebooting...`))
 				.then(() => client.destroy())
 				.then(() => client.login(process.env.TOKEN))
 				.then(() => notify())

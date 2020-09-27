@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
 	name: 'hello',
 	triggers: ['hello', 'hi'],
@@ -9,7 +11,7 @@ module.exports = {
 				name: 'hello-there.gif',
 			}],
 		})
-			.then(console.log('sent the greeting'))
+			.then(console.log(`${moment().format('LLL')}: A greeting was sent to ${message.author}`))
 			.catch(console.error);
 	},
 };
