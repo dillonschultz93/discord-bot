@@ -22,9 +22,9 @@ Restarts the bot. This is command is reserved for the server admin.
 
 ### !poll "<question>?" "<choices (optional)>"
 
-Ask a polling question. Vote by emoji reaction
-Usage: To ask a yes/no poll wrap your question around double quotes.
-E.g. !poll "Yes or No?"
-To ask a multiple choice question wrap your question around double quotes and the subsequent choices in double quotes as well.
-E.g. !poll "What toppings do you want on the pizza?" "Mushrooms" "Black Olives" "Bacon" "Peppers" "Onions"
+Ask a polling question. Vote by emoji reaction<br>
+*Usage*: To ask a yes/no poll wrap your question around double quotes.<br>
+E.g. `!poll "Yes or No?"`<br>
+To ask a multiple choice question wrap your question around double quotes and the subsequent choices in double quotes as well.<br>
+E.g. `!poll "What toppings do you want on the pizza?" "Mushrooms" "Black Olives" "Bacon" "Peppers" "Onions"`<br>
 Note: Multiple choice polls have a limit of 5 options.
