@@ -95,7 +95,7 @@ module.exports = {
 								}
 
 								msg
-									.awaitReactions(filter, { time: 6000 })
+									.awaitReactions(filter, { time: 1800000 })
 									.then((collected) => {
 										// Collect all of the reactions
 										const reactions = collected.array();
