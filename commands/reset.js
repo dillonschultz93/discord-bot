@@ -29,7 +29,7 @@ module.exports = {
 				.catch(console.error);
 		}
 		else {
-			message.channel.send('You do not have permission to run this command');
+			message.channel.send(`${message.author}, you do not have permission to run this command`);
 		}
 	},
 };

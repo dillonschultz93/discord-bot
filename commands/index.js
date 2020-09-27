@@ -5,8 +5,9 @@ const hello = require('./hello');
 const uptime = require('./uptime');
 const roll = require('./roll');
 const reset = require('./reset');
+const poll = require('./poll');
 
-const rawCommands = [hello, uptime, roll, reset];
+const rawCommands = [hello, uptime, roll, reset, poll];
 // Setting up the handlers for each command.
 const commands = [...rawCommands].reduce((all, command) => {
 	command.triggers.forEach((trigger) => (all[trigger] = command.handler));
@@ -20,7 +21,11 @@ const descriptions = new MessageEmbed()
 	.setDescription('Here is a list of valid commands that Mímameiðr Bot will take');
 
 rawCommands.forEach(command => {
-	descriptions.addField(`!${command.triggers.join(' | !')}`, `${command.description}`, false);
+	descriptions.addField(
+		`!${command.triggers.join(' | !')}`,
+		`${command.description}\n${command.usage ? '**Usage:** ' + command.usage : ''}`,
+		false,
+	);
 });
 
 const showAllCommands = (message) => {
