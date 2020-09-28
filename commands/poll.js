@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { MessageEmbed } = require('discord.js');
 const optionChars = require('../util/regionalIndicatorCharacters');
 const moment = require('moment');
 
@@ -18,9 +17,6 @@ module.exports = {
 				// Yes/No question
 				if (args.length === 1) {
 					const question = args[0].replace(/("|(“|”))/g, '');
-					const filter = (reaction) => {
-						return ['👍', '👎', '🤷'].includes(reaction.emoji.name);
-					};
 
 					// Log the question to the console
 					console.log(`${moment().format('LLL')}: ${message.author} created a yes/no poll: ${question}`);
@@ -31,38 +27,6 @@ module.exports = {
 							await msg.react('👍');
 							await msg.react('👎');
 							await msg.react('🤷');
-
-							msg
-								.awaitReactions(filter, { time: 1800000 })
-								.then((collected) => {
-									// Collect all of the reactions
-									const reactions = collected.array();
-
-									// Collect the channel's reactions
-									const channelReactions = {
-										yes: reactions.filter((react) => react.emoji.name === '👍')
-											.length,
-										no: reactions.filter((react) => react.emoji.name === '👎')
-											.length,
-										undecided: reactions.filter(
-											(react) => react.emoji.name === '🤷',
-										).length,
-									};
-
-									// Logging results to the server
-									console.log(`${moment().format('LLL')}: Results from the question "${question}": `, channelReactions);
-
-									const embed = new MessageEmbed()
-										.setTitle('Here are the results of the poll')
-										.setDescription(`${question}`);
-
-									for (const tally in channelReactions) {
-										embed.addField(tally, channelReactions[tally], false);
-									}
-
-									msg.channel.send(embed);
-								})
-								.catch(() => console.error);
 						})
 						.catch(() => console.error);
 				}
@@ -72,9 +36,6 @@ module.exports = {
 					const question = args[0];
 					const pollOptions = args.slice(1);
 					const numberOfOptions = args.length - 1;
-					const filter = (reaction) => {
-						return [...optionChars].includes(reaction.emoji.name);
-					};
 
 					// Generates a string for the bot to display
 					const generateOptions = (options) => {
@@ -101,35 +62,6 @@ module.exports = {
 								for (let i = 0; i < numberOfOptions; i++) {
 									await msg.react(optionChars[i]);
 								}
-
-								msg
-									.awaitReactions(filter, { time: 1800000 })
-									.then((collected) => {
-										// Collect all of the reactions
-										const reactions = collected.array();
-
-										// Collect the channel's reactions
-										const channelReactions = {};
-										pollOptions.forEach((option, index) => {
-											channelReactions[option] = reactions.filter(
-												(react) => react.emoji.name === optionChars[index],
-											).length;
-										});
-
-										// Logging results to the server
-										console.log(`${moment().format('LLL')}: Results from the question "${question}": `, channelReactions);
-
-										const embed = new MessageEmbed()
-											.setTitle('Here are the results of the poll')
-											.setDescription(`${question}`);
-
-										for (const tally in channelReactions) {
-											embed.addField(tally, channelReactions[tally], false);
-										}
-
-										msg.channel.send(embed);
-									})
-									.catch(() => console.error);
 							})
 							.catch(() => console.error);
 					}
